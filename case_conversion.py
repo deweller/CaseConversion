@@ -17,47 +17,47 @@ SETTINGS_FILE = "CaseConversion.sublime-settings"
 
 
 def to_snake_case(text, detectAcronyms, acronyms):
-    words, case, sep = case_parse.parseVariable(text, detectAcronyms, acronyms)
-    return '_'.join([w.lower() for w in words])
+    words, case, sep, prefix = case_parse.parseVariable(text, detectAcronyms, acronyms)
+    return prefix+'_'.join([w.lower() for w in words])
 
 
 def to_pascal_case(text, detectAcronyms, acronyms):
-    words, case, sep = case_parse.parseVariable(text, detectAcronyms, acronyms)
-    return ''.join(words)
+    words, case, sep, prefix = case_parse.parseVariable(text, detectAcronyms, acronyms)
+    return prefix+''.join(words)
 
 
 def to_camel_case(text, detectAcronyms, acronyms):
-    words, case, sep = case_parse.parseVariable(text, detectAcronyms, acronyms)
+    words, case, sep, prefix = case_parse.parseVariable(text, detectAcronyms, acronyms)
     words[0] = words[0].lower()
-    return ''.join(words)
+    return prefix+''.join(words)
 
 
 def to_dot_case(text, detectAcronyms, acronyms):
-    words, case, sep = case_parse.parseVariable(text, detectAcronyms, acronyms)
+    words, case, sep, prefix = case_parse.parseVariable(text, detectAcronyms, acronyms)
     return '.'.join([w.lower() for w in words])
 
 
 def to_dash_case(text, detectAcronyms, acronyms):
-    words, case, sep = case_parse.parseVariable(text, detectAcronyms, acronyms)
+    words, case, sep, prefix = case_parse.parseVariable(text, detectAcronyms, acronyms)
     return '-'.join([w.lower() for w in words])
 
 
 def to_slash(text, detectAcronyms, acronyms):
-    words, case, sep = case_parse.parseVariable(text, detectAcronyms, acronyms, True)
+    words, case, sep, prefix = case_parse.parseVariable(text, detectAcronyms, acronyms, True)
     return '/'.join(words)
 
 def to_backslash(text, detectAcronyms, acronyms):
-    words, case, sep = case_parse.parseVariable(text, detectAcronyms, acronyms, True)
+    words, case, sep, prefix = case_parse.parseVariable(text, detectAcronyms, acronyms, True)
     return '\\'.join(words)
 
 
 def to_separate_words(text, detectAcronyms, acronyms):
-    words, case, sep = case_parse.parseVariable(text, detectAcronyms, acronyms, True)
+    words, case, sep, prefix = case_parse.parseVariable(text, detectAcronyms, acronyms, True)
     return ' '.join(words)
 
 
 def toggle_case(text, detectAcronyms, acronyms):
-    words, case, sep = case_parse.parseVariable(text, detectAcronyms, acronyms)
+    words, case, sep, prefix = case_parse.parseVariable(text, detectAcronyms, acronyms)
     if case == 'pascal' and not sep:
         return to_snake_case(text, detectAcronyms, acronyms)
     elif case == 'lower' and sep == '_':

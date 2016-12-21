@@ -29,6 +29,12 @@ def parseVariable(var, detectAcronyms=True, acronyms=[], preserveCase=False):
     words = []
     hasSep = False
 
+    # check for starting variable identifier of $
+    variablePrefix = ''
+    if var[0:1] == "$":
+        variablePrefix = "$"
+        var = var[1:]
+
     # Index of current character. Initially 1 because we don't want to check
     # if the 0th character is a boundary.
     i = 1
@@ -239,4 +245,4 @@ def parseVariable(var, detectAcronyms=True, acronyms=[], preserveCase=False):
             else:
                 words[i] = words[i].capitalize()
 
-    return words, caseType, hasSep
+    return words, caseType, hasSep, variablePrefix
